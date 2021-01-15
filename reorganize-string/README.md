@@ -1,3 +1,4 @@
+[Discussion Post (created on 14/0/2021 at 19:21)](https://leetcode.com/problems/reorganize-string/solution/)  
 <h2>767. Reorganize String</h2><h3>Medium</h3><hr><div><p>Given a string <code>S</code>, check if the letters can be rearranged so that two characters that are adjacent to each other are not the same.</p>
 
 <p>If possible, output any possible result.&nbsp; If not possible, return the empty string.</p>
