@@ -29,7 +29,7 @@ class Solution {
             for(int j : graph.get(i)){
             if(isCyclic(j, visited, graph))
                 return true;
-        }
+        }
         }
         
         visited[i] = 1;
