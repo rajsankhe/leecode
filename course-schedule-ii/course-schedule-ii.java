@@ -1,16 +1,17 @@
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        int courseOrder[] = new int[numCourses];
         int indegree[] = new int[numCourses];
         Map<Integer, List<Integer>> graph = buildGraph(numCourses, prerequisites, indegree);
         int completedCourses = 0;
+        
+        int [] courseOrder = new int[numCourses];
+        int k = 0;
         Queue<Integer> queue = new LinkedList<>();
-        int k=0;
         for(int i=0; i < numCourses; i++){
             if (indegree[i] == 0) {
                 completedCourses++;
-                queue.add(i);
                 courseOrder[k++] = i;
+                queue.add(i);
             }
         }
         
@@ -23,7 +24,7 @@ class Solution {
                     queue.add(course);
                     completedCourses++;
                     courseOrder[k++] = course;
-                }
+                }
             }
             }
         }
@@ -40,4 +41,5 @@ class Solution {
         }
         return graph;
     }
+    
 }
