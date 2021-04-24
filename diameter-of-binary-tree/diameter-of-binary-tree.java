@@ -4,23 +4,35 @@
  *     int val;
  *     TreeNode left;
  *     TreeNode right;
- *     TreeNode(int x) { val = x; }
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
  * }
  */
 class Solution {
-    int ans;
     public int diameterOfBinaryTree(TreeNode root) {
-        ans = 0;
-        depth(root);
-        return ans;
+        if (root == null)
+            return 0;
         
+        int heightL = height(root.left);
+        int heightR = height(root.right);
+        int diameterL = diameterOfBinaryTree(root.left);
+        int diameterR = diameterOfBinaryTree(root.right);
+        return Math.max(heightL + heightR, Math.max(diameterL, diameterR));
+    
     }
     
-    public int depth(TreeNode node) {
-        if (node == null) return 0;
-        int left = depth(node.left);
-        int right = depth(node.right);
-        ans = Math.max(ans, left + right);
-        return Math.max(left, right) +1;
+    private int height(TreeNode node){
+        if (node == null){
+            return 0;
+        }
+        
+        int left = height(node.left);
+        int right = height(node.right);
+        return Math.max(left, right) + 1;
     }
 }
