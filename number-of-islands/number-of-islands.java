@@ -1,33 +1,35 @@
 class Solution {
     public int numIslands(char[][] grid) {
-        int directions[][] = {{1,0}, {0,1}, {-1,0}, {0,-1}};
-        int noOfIsland = 0;
         int row = grid.length;
         int column = grid[0].length;
-        for (int i= 0; i < row; i++) {
-            for (int j=0; j < column; j++) {
+        int[][] directions = {{0,-1}, {0,1}, {1,0}, {-1,0}};
+        int numOfIslands = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
                 if (grid[i][j] == '1') {
-                    noOfIsland++;
-                    dfs(i,j, grid, directions);
+                    numOfIslands++;
+                    dfs(grid, row, column, directions, i, j);
                 }
             }
         }
         
-        return noOfIsland;
+        return numOfIslands;
     }
     
-    private void dfs(int i, int j, char[][] grid, int directions[][]) {
+    public void dfs(char[][] grid, int row, int column, int[][] directions, int i, int j) {
         grid[i][j] = '0';
+        for (int[] direction : directions){
+            int nextRow = i + direction[0];
+            int nextColumn = j + direction[1];
+            
+            if (nextRow < 0 || 
+                nextRow >= row || 
+                nextColumn < 0 || 
+                nextColumn >= column || 
+                grid[nextRow][nextColumn] == '0') 
+            continue;
         
-        for (int [] dir : directions) {
-            int nextI = i + dir[0];
-            int nextJ = j + dir[1];
-            if (nextI < 0 || 
-                nextI >= grid.length ||
-               nextJ < 0 ||
-               nextJ >= grid[0].length || grid[nextI][nextJ] == '0')
-                continue;
-            dfs(nextI, nextJ, grid,directions);
-        }
+            dfs(grid, row, column, directions, nextRow, nextColumn);       
+        } 
     }
 }
