@@ -28,7 +28,6 @@ class Solution {
         
         int leftMax = Math.max(maxPathSumHelper(root.left),0);
         int rightMax = Math.max(maxPathSumHelper(root.right),0);
-        System.out.println("leftMax" + leftMax + "rightMax" + rightMax + "max" + max);
         max = Math.max(max, leftMax + rightMax + root.val);
         
         return Math.max(leftMax, rightMax) + root.val;
