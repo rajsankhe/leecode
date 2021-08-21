@@ -17,16 +17,15 @@ class Solution {
     
     public void dfs(TreeNode node, int level,List<List<Integer>> result){
         if(level >= result.size()){
-            List<Integer> levelList = new LinkedList<>();
-            levelList.add(node.val);
-            result.add(levelList);
+            result.add(new LinkedList<>());
+        } 
+        
+        if(level % 2 == 0){
+            result.get(level).add(node.val);
         } else{
-            if(level % 2 == 0){
-                result.get(level).add(node.val);
-            } else{
-                result.get(level).add(0, node.val);
-            }
+            result.get(level).add(0, node.val);
         }
+        
         if(node.left != null)
         dfs(node.left, level+1, result);
         if(node.right != null)
